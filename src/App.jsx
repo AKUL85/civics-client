@@ -20,7 +20,8 @@ import AIAssistantPage from './pages/AIAssistantPage';
 import LawyersPage from './pages/LawyersPage';
 import CommunityPage from './pages/CommunityPage';
 import { LoginPage, RegisterPage } from './pages/AuthPages';
-
+import About from './pages/About';
+import FAQ from "./pages/FAQ";
 // Create React Query client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -56,6 +57,8 @@ function App() {
                         <Route path="/community" element={<CommunityPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/faq" element={<FAQ />} />
                       </Routes>
                     </motion.div>
                   </main>

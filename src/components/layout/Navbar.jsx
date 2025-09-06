@@ -15,6 +15,8 @@ const Navbar = () => {
     { name: 'এআই সহায়ক', href: '/ai-assistant', nameEn: 'AI Assistant' },
     { name: 'আইনজীবী খুঁজুন', href: '/lawyers', nameEn: 'Find Lawyers' },
     { name: 'কমিউনিটি', href: '/community', nameEn: 'Community' },
+    { name: 'প্রশ্নোত্তর', href: '/faq', nameEn: 'FAQ' },
+    { name: 'আমাদের সম্পর্কে', href: '/about', nameEn: 'About Us' }, 
   ];
 
   const handleLogout = () => {
