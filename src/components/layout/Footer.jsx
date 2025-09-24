@@ -58,6 +58,16 @@ const Footer = () => {
                   কমিউনিটি
                 </Link>
               </li>
+               <li>
+                <Link to="/faq" className="text-gray-300 hover:text-white transition-colors">
+                  প্রশ্নোত্তর
+                </Link>
+              </li>
+               <li>
+                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
+                 আমাদের সম্পর্কে
+                </Link>
+              </li>
             </ul>
           </div>
 
