@@ -4,13 +4,14 @@ import { BookOpen, Search, Filter, FileText, ChevronRight } from 'lucide-react';
 import GlassCard from '../components/ui/GlassCard';
 import SearchBar from '../components/ui/SearchBar';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { useNavigate } from "react-router-dom";
 
 const LegalGuidesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [guides, setGuides] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   const categories = [
     { id: 'all', name: 'সব ক্যাটাগরি', nameEn: 'All Categories' },
     { id: 'marriage', name: 'বিবাহ', nameEn: 'Marriage' },
@@ -20,6 +21,9 @@ const LegalGuidesPage = () => {
     { id: 'labor', name: 'শ্রম', nameEn: 'Labor' },
     { id: 'consumer', name: 'ভোক্তা অধিকার', nameEn: 'Consumer Rights' },
     { id: 'cybercrime', name: 'সাইবার অপরাধ', nameEn: 'Cybercrime' },
+    { id: 'criminal', name: 'ফৌজদারি আইন', nameEn: 'Criminal Law' },
+    { id: 'business', name: 'ব্যবসা আইন', nameEn: 'Business Law' },
+    { id: 'child', name: 'শিশু অধিকার', nameEn: 'Child Rights' },
   ];
 
   const mockGuides = [
@@ -83,10 +87,99 @@ const LegalGuidesPage = () => {
       difficulty: 'সহজ',
       views: 4230,
     },
+    {
+      id: 7,
+      title: 'অনলাইন প্রতারণা হলে কী করবেন',
+      titleEn: 'What to Do in Case of Online Fraud',
+      category: 'cybercrime',
+      excerpt: 'ই-কমার্স বা মোবাইল ব্যাংকিং প্রতারণার ক্ষেত্রে করণীয় পদক্ষেপ।',
+      readTime: '৫ মিনিট',
+      difficulty: 'সহজ',
+      views: 3650,
+    },
+    {
+      id: 8,
+      title: 'ভোক্তা অধিকার লঙ্ঘিত হলে করণীয়',
+      titleEn: 'Consumer Rights Violation Remedies',
+      category: 'consumer',
+      excerpt: 'প্রতারণা বা নিম্নমানের পণ্য পেলে অভিযোগ করার প্রক্রিয়া।',
+      readTime: '৬ মিনিট',
+      difficulty: 'সহজ',
+      views: 2850,
+    },
+    {
+      id: 9,
+      title: 'পুলিশের কাছে অভিযোগ দায়ের করার নিয়ম',
+      titleEn: 'How to File a Police Complaint',
+      category: 'criminal',
+      excerpt: 'সঠিকভাবে অভিযোগ (FIR) দায়ের করার ধাপ ও করণীয়।',
+      readTime: '৯ মিনিট',
+      difficulty: 'সহজ',
+      views: 3340,
+    },
+    {
+      id: 10,
+      title: 'জামিন প্রাপ্তির আইনি প্রক্রিয়া',
+      titleEn: 'Legal Process of Getting Bail',
+      category: 'criminal',
+      excerpt: 'জামিনের ধরন, আবেদন প্রক্রিয়া ও আদালতের ভূমিকা।',
+      readTime: '১১ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 2980,
+    },
+    {
+      id: 11,
+      title: 'শিশুর হেফাজতের অধিকার',
+      titleEn: 'Child Custody Rights',
+      category: 'child',
+      excerpt: 'বিচ্ছেদের পর শিশু কার কাছে থাকবে— আইন কী বলে।',
+      readTime: '৮ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 2120,
+    },
+    {
+      id: 12,
+      title: 'যৌন হয়রানির বিরুদ্ধে করণীয়',
+      titleEn: 'What to Do Against Sexual Harassment',
+      category: 'criminal',
+      excerpt: 'কর্মক্ষেত্রে বা জনসমক্ষে হয়রানি হলে আইন অনুযায়ী করণীয়।',
+      readTime: '৭ মিনিট',
+      difficulty: 'সহজ',
+      views: 4100,
+    },
+    {
+      id: 13,
+      title: 'ব্যবসা নিবন্ধনের প্রক্রিয়া',
+      titleEn: 'Business Registration Process in Bangladesh',
+      category: 'business',
+      excerpt: 'ট্রেড লাইসেন্স, TIN ও VAT রেজিস্ট্রেশনের ধাপসমূহ।',
+      readTime: '১২ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 3310,
+    },
+    {
+      id: 14,
+      title: 'সম্পত্তি বিরোধ মীমাংসা',
+      titleEn: 'Property Dispute Settlement',
+      category: 'land',
+      excerpt: 'আদালত ও বিকল্প বিরোধ নিষ্পত্তি প্রক্রিয়া।',
+      readTime: '১০ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 2460,
+    },
+    {
+      id: 15,
+      title: 'স্টার্টআপ আইন ও আইপি সুরক্ষা',
+      titleEn: 'Startup Law & Intellectual Property',
+      category: 'business',
+      excerpt: 'ট্রেডমার্ক, কপিরাইট ও পেটেন্ট নিবন্ধনের আইনি গাইড।',
+      readTime: '১৪ মিনিট',
+      difficulty: 'কঠিন',
+      views: 1880,
+    },
   ];
 
   useEffect(() => {
-    // Simulate API call
     const timer = setTimeout(() => {
       setGuides(mockGuides);
       setLoading(false);
@@ -96,10 +189,12 @@ const LegalGuidesPage = () => {
   }, []);
 
   const filteredGuides = guides.filter(guide => {
-    const matchesSearch = guide.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         guide.titleEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         guide.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || guide.category === selectedCategory;
+    const matchesSearch =
+      guide.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      guide.titleEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      guide.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === 'all' || guide.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -183,7 +278,8 @@ const LegalGuidesPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <GlassCard className="p-6 h-full group cursor-pointer" hover>
+                <GlassCard className="p-6 h-full group cursor-pointer" hover onClick={() => navigate(`/guides/${guide.id}`)}
+                  >
                   <div className="flex items-center justify-between mb-4">
                     <div className="bg-gradient-to-r from-blue-500 to-green-500 p-2 rounded-lg">
                       <FileText className="h-5 w-5 text-white" />
@@ -223,8 +319,12 @@ const LegalGuidesPage = () => {
             className="text-center py-20"
           >
             <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-600 mb-2">কোন গাইড পাওয়া যায়নি</h3>
-            <p className="text-gray-500">অন্য কোন বিষয় খুঁজে দেখুন বা ফিল্টার পরিবর্তন করুন</p>
+            <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              কোন গাইড পাওয়া যায়নি
+            </h3>
+            <p className="text-gray-500">
+              অন্য কোন বিষয় খুঁজে দেখুন বা ফিল্টার পরিবর্তন করুন
+            </p>
           </motion.div>
         )}
       </div>

@@ -16,6 +16,7 @@ import { AIAssistantProvider } from './contexts/AIAssistantContext';
 // Pages
 import HomePage from './pages/HomePage';
 import LegalGuidesPage from './pages/LegalGuidesPage';
+import LegalGuideDetails from "./pages/LegalGuideDetails";
 import AIAssistantPage from './pages/AIAssistantPage';
 import LawyersPage from './pages/LawyersPage';
 import CommunityPage from './pages/CommunityPage';
@@ -52,6 +53,7 @@ function App() {
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/guides" element={<LegalGuidesPage />} />
+                        <Route path="/guides/:id" element={<LegalGuideDetails />} />
                         <Route path="/ai-assistant" element={<AIAssistantPage />} />
                         <Route path="/lawyers" element={<LawyersPage />} />
                         <Route path="/community" element={<CommunityPage />} />
