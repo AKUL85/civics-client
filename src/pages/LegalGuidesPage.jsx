@@ -12,6 +12,7 @@ const LegalGuidesPage = () => {
   const [guides, setGuides] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  
   const categories = [
     { id: 'all', name: 'সব ক্যাটাগরি', nameEn: 'All Categories' },
     { id: 'marriage', name: 'বিবাহ', nameEn: 'Marriage' },
@@ -27,6 +28,7 @@ const LegalGuidesPage = () => {
   ];
 
   const mockGuides = [
+    // Marriage Category
     {
       id: 1,
       title: 'বিবাহ নিবন্ধন প্রক্রিয়া',
@@ -39,6 +41,28 @@ const LegalGuidesPage = () => {
     },
     {
       id: 2,
+      title: 'বিয়ে চুক্তির শর্তাবলী',
+      titleEn: 'Marriage Contract Conditions',
+      category: 'marriage',
+      excerpt: 'বিবাহ চুক্তিতে কী কী শর্ত অন্তর্ভুক্ত করা যায় এবং এর আইনি বৈধতা',
+      readTime: '১০ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 1560,
+    },
+    {
+      id: 3,
+      title: 'বহুবিবাহের আইনি শর্ত',
+      titleEn: 'Legal Conditions for Polygamy',
+      category: 'marriage',
+      excerpt: 'মুসলিম পারিবারিক আইনে বহুবিবাহের অনুমতি ও শর্তাবলী',
+      readTime: '৭ মিনিট',
+      difficulty: 'সহজ',
+      views: 1890,
+    },
+
+    // Divorce Category
+    {
+      id: 4,
       title: 'তালাকের আইনি প্রক্রিয়া',
       titleEn: 'Legal Process of Divorce',
       category: 'divorce',
@@ -48,7 +72,29 @@ const LegalGuidesPage = () => {
       views: 1890,
     },
     {
-      id: 3,
+      id: 5,
+      title: 'খুলা তালাক প্রক্রিয়া',
+      titleEn: 'Khula Divorce Process',
+      category: 'divorce',
+      excerpt: 'স্ত্রীর উদ্যোগে তালাক (খুলা) এর আইনি প্রক্রিয়া ও শর্তাবলী',
+      readTime: '৯ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 1670,
+    },
+    {
+      id: 6,
+      title: 'তালাক পরবর্তী ভরণপোষণ',
+      titleEn: 'Post-Divorce Maintenance',
+      category: 'divorce',
+      excerpt: 'তালাকের পর স্ত্রী ও সন্তানের ভরণপোষণের আইনি অধিকার',
+      readTime: '১১ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 1450,
+    },
+
+    // Land Category
+    {
+      id: 7,
       title: 'ভূমি রেজিস্ট্রেশন গাইড',
       titleEn: 'Land Registration Guide',
       category: 'land',
@@ -58,7 +104,29 @@ const LegalGuidesPage = () => {
       views: 3120,
     },
     {
-      id: 4,
+      id: 8,
+      title: 'সম্পত্তি বিরোধ মীমাংসা',
+      titleEn: 'Property Dispute Settlement',
+      category: 'land',
+      excerpt: 'আদালত ও বিকল্প বিরোধ নিষ্পত্তি প্রক্রিয়া',
+      readTime: '১০ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 2460,
+    },
+    {
+      id: 9,
+      title: 'জমি ক্রয়-বিক্রয় চুক্তি',
+      titleEn: 'Land Sale-Purchase Agreement',
+      category: 'land',
+      excerpt: 'সঠিকভাবে জমি ক্রয়-বিক্রয় চুক্তি প্রস্তুত করার গাইড',
+      readTime: '১৩ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 2780,
+    },
+
+    // Inheritance Category
+    {
+      id: 10,
       title: 'উত্তরাধিকার সম্পত্তি বণ্টন',
       titleEn: 'Inheritance Property Distribution',
       category: 'inheritance',
@@ -68,7 +136,29 @@ const LegalGuidesPage = () => {
       views: 1560,
     },
     {
-      id: 5,
+      id: 11,
+      title: 'উইল প্রস্তুত করার নিয়ম',
+      titleEn: 'How to Prepare a Will',
+      category: 'inheritance',
+      excerpt: 'সঠিকভাবে উইল প্রস্তুত করা ও নিবন্ধনের প্রক্রিয়া',
+      readTime: '৮ মিনিট',
+      difficulty: 'সহজ',
+      views: 1340,
+    },
+    {
+      id: 12,
+      title: 'বিনা উইলে সম্পত্তি বণ্টন',
+      titleEn: 'Property Distribution Without Will',
+      category: 'inheritance',
+      excerpt: 'উইল ছাড়াই ইসলামী ও অন্যান্য আইনে সম্পত্তি বণ্টন প্রক্রিয়া',
+      readTime: '৯ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 1670,
+    },
+
+    // Labor Category
+    {
+      id: 13,
       title: 'শ্রমিক অধিকার ও বেতন',
       titleEn: 'Worker Rights & Salary',
       category: 'labor',
@@ -78,7 +168,61 @@ const LegalGuidesPage = () => {
       views: 2890,
     },
     {
-      id: 6,
+      id: 14,
+      title: 'চাকরি থেকে বরখাস্তের নিয়ম',
+      titleEn: 'Rules of Job Termination',
+      category: 'labor',
+      excerpt: 'সঠিকভাবে চাকরি থেকে বরখাস্ত প্রক্রিয়া ও ক্ষতিপূরণ',
+      readTime: '৭ মিনিট',
+      difficulty: 'সহজ',
+      views: 2230,
+    },
+    {
+      id: 15,
+      title: 'মাতৃত্বকালীন ছুটির অধিকার',
+      titleEn: 'Maternity Leave Rights',
+      category: 'labor',
+      excerpt: 'গর্ভবতী কর্মীদের মাতৃত্বকালীন ছুটি ও অন্যান্য সুযোগ-সুবিধা',
+      readTime: '৫ মিনিট',
+      difficulty: 'সহজ',
+      views: 1980,
+    },
+
+    // Consumer Rights Category
+    {
+      id: 16,
+      title: 'ভোক্তা অধিকার লঙ্ঘিত হলে করণীয়',
+      titleEn: 'Consumer Rights Violation Remedies',
+      category: 'consumer',
+      excerpt: 'প্রতারণা বা নিম্নমানের পণ্য পেলে অভিযোগ করার প্রক্রিয়া',
+      readTime: '৬ মিনিট',
+      difficulty: 'সহজ',
+      views: 2850,
+    },
+    {
+      id: 17,
+      title: 'ই-কমার্স কেনাকাটায় প্রতিকার',
+      titleEn: 'E-commerce Shopping Remedies',
+      category: 'consumer',
+      excerpt: 'অনলাইন শপিংয়ে প্রতারণার শিকার হলে আইনি প্রতিকার',
+      readTime: '৫ মিনিট',
+      difficulty: 'সহজ',
+      views: 3120,
+    },
+    {
+      id: 18,
+      title: 'ভোক্তা অধিকার সংরক্ষণ আইন',
+      titleEn: 'Consumer Rights Protection Act',
+      category: 'consumer',
+      excerpt: 'ভোক্তা অধিকার সংরক্ষণ আইনের মূল ধারা ও প্রয়োগ',
+      readTime: '৮ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 1780,
+    },
+
+    // Cybercrime Category
+    {
+      id: 19,
       title: 'সাইবার অপরাধ থেকে সুরক্ষা',
       titleEn: 'Cybercrime Protection',
       category: 'cybercrime',
@@ -88,95 +232,121 @@ const LegalGuidesPage = () => {
       views: 4230,
     },
     {
-      id: 7,
+      id: 20,
       title: 'অনলাইন প্রতারণা হলে কী করবেন',
       titleEn: 'What to Do in Case of Online Fraud',
       category: 'cybercrime',
-      excerpt: 'ই-কমার্স বা মোবাইল ব্যাংকিং প্রতারণার ক্ষেত্রে করণীয় পদক্ষেপ।',
+      excerpt: 'ই-কমার্স বা মোবাইল ব্যাংকিং প্রতারণার ক্ষেত্রে করণীয় পদক্ষেপ',
       readTime: '৫ মিনিট',
       difficulty: 'সহজ',
       views: 3650,
     },
     {
-      id: 8,
-      title: 'ভোক্তা অধিকার লঙ্ঘিত হলে করণীয়',
-      titleEn: 'Consumer Rights Violation Remedies',
-      category: 'consumer',
-      excerpt: 'প্রতারণা বা নিম্নমানের পণ্য পেলে অভিযোগ করার প্রক্রিয়া।',
+      id: 21,
+      title: 'ডিজিটাল সিকিউরিটি গাইড',
+      titleEn: 'Digital Security Guide',
+      category: 'cybercrime',
+      excerpt: 'ডিজিটাল নিরাপত্তা ও ব্যক্তিগত তথ্য সুরক্ষার উপায়',
       readTime: '৬ মিনিট',
       difficulty: 'সহজ',
-      views: 2850,
+      views: 2890,
     },
+
+    // Criminal Law Category
     {
-      id: 9,
+      id: 22,
       title: 'পুলিশের কাছে অভিযোগ দায়ের করার নিয়ম',
       titleEn: 'How to File a Police Complaint',
       category: 'criminal',
-      excerpt: 'সঠিকভাবে অভিযোগ (FIR) দায়ের করার ধাপ ও করণীয়।',
+      excerpt: 'সঠিকভাবে অভিযোগ (FIR) দায়ের করার ধাপ ও করণীয়',
       readTime: '৯ মিনিট',
       difficulty: 'সহজ',
       views: 3340,
     },
     {
-      id: 10,
+      id: 23,
       title: 'জামিন প্রাপ্তির আইনি প্রক্রিয়া',
       titleEn: 'Legal Process of Getting Bail',
       category: 'criminal',
-      excerpt: 'জামিনের ধরন, আবেদন প্রক্রিয়া ও আদালতের ভূমিকা।',
+      excerpt: 'জামিনের ধরন, আবেদন প্রক্রিয়া ও আদালতের ভূমিকা',
       readTime: '১১ মিনিট',
       difficulty: 'মধ্যম',
       views: 2980,
     },
     {
-      id: 11,
-      title: 'শিশুর হেফাজতের অধিকার',
-      titleEn: 'Child Custody Rights',
-      category: 'child',
-      excerpt: 'বিচ্ছেদের পর শিশু কার কাছে থাকবে— আইন কী বলে।',
-      readTime: '৮ মিনিট',
-      difficulty: 'মধ্যম',
-      views: 2120,
-    },
-    {
-      id: 12,
+      id: 24,
       title: 'যৌন হয়রানির বিরুদ্ধে করণীয়',
       titleEn: 'What to Do Against Sexual Harassment',
       category: 'criminal',
-      excerpt: 'কর্মক্ষেত্রে বা জনসমক্ষে হয়রানি হলে আইন অনুযায়ী করণীয়।',
+      excerpt: 'কর্মক্ষেত্রে বা জনসমক্ষে হয়রানি হলে আইন অনুযায়ী করণীয়',
       readTime: '৭ মিনিট',
       difficulty: 'সহজ',
       views: 4100,
     },
+
+    // Business Law Category
     {
-      id: 13,
+      id: 25,
       title: 'ব্যবসা নিবন্ধনের প্রক্রিয়া',
       titleEn: 'Business Registration Process in Bangladesh',
       category: 'business',
-      excerpt: 'ট্রেড লাইসেন্স, TIN ও VAT রেজিস্ট্রেশনের ধাপসমূহ।',
+      excerpt: 'ট্রেড লাইসেন্স, TIN ও VAT রেজিস্ট্রেশনের ধাপসমূহ',
       readTime: '১২ মিনিট',
       difficulty: 'মধ্যম',
       views: 3310,
     },
     {
-      id: 14,
-      title: 'সম্পত্তি বিরোধ মীমাংসা',
-      titleEn: 'Property Dispute Settlement',
-      category: 'land',
-      excerpt: 'আদালত ও বিকল্প বিরোধ নিষ্পত্তি প্রক্রিয়া।',
-      readTime: '১০ মিনিট',
-      difficulty: 'মধ্যম',
-      views: 2460,
-    },
-    {
-      id: 15,
+      id: 26,
       title: 'স্টার্টআপ আইন ও আইপি সুরক্ষা',
       titleEn: 'Startup Law & Intellectual Property',
       category: 'business',
-      excerpt: 'ট্রেডমার্ক, কপিরাইট ও পেটেন্ট নিবন্ধনের আইনি গাইড।',
+      excerpt: 'ট্রেডমার্ক, কপিরাইট ও পেটেন্ট নিবন্ধনের আইনি গাইড',
       readTime: '১৪ মিনিট',
       difficulty: 'কঠিন',
       views: 1880,
     },
+    {
+      id: 27,
+      title: 'কোম্পানি আইন ও গঠন প্রক্রিয়া',
+      titleEn: 'Company Law & Formation Process',
+      category: 'business',
+      excerpt: 'প্রাইভেট ও পাবলিক লিমিটেড কোম্পানি গঠনের আইনি প্রক্রিয়া',
+      readTime: '১৫ মিনিট',
+      difficulty: 'কঠিন',
+      views: 1560,
+    },
+
+    // Child Rights Category
+    {
+      id: 28,
+      title: 'শিশুর হেফাজতের অধিকার',
+      titleEn: 'Child Custody Rights',
+      category: 'child',
+      excerpt: 'বিচ্ছেদের পর শিশু কার কাছে থাকবে— আইন কী বলে',
+      readTime: '৮ মিনিট',
+      difficulty: 'মধ্যম',
+      views: 2120,
+    },
+    {
+      id: 29,
+      title: 'শিশু শ্রম আইন ও নিষেধাজ্ঞা',
+      titleEn: 'Child Labor Laws & Prohibitions',
+      category: 'child',
+      excerpt: 'বাংলাদেশে শিশু শ্রম সম্পর্কিত আইন ও শাস্তির বিধান',
+      readTime: '৬ মিনিট',
+      difficulty: 'সহজ',
+      views: 1890,
+    },
+    {
+      id: 30,
+      title: 'শিশু অধিকার সুরক্ষা কমিশন',
+      titleEn: 'Child Rights Protection Commission',
+      category: 'child',
+      excerpt: 'জাতীয় শিশু অধিকার সুরক্ষা কমিশনের ভূমিকা ও কার্যক্রম',
+      readTime: '৭ মিনিট',
+      difficulty: 'সহজ',
+      views: 1340,
+    }
   ];
 
   useEffect(() => {
@@ -278,8 +448,11 @@ const LegalGuidesPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <GlassCard className="p-6 h-full group cursor-pointer" hover onClick={() => navigate(`/guides/${guide.id}`)}
-                  >
+                <GlassCard 
+                  className="p-6 h-full group cursor-pointer" 
+                  hover 
+                  onClick={() => navigate(`/guides/${guide.id}`)}
+                >
                   <div className="flex items-center justify-between mb-4">
                     <div className="bg-gradient-to-r from-blue-500 to-green-500 p-2 rounded-lg">
                       <FileText className="h-5 w-5 text-white" />
